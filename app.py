@@ -33,7 +33,7 @@ def get_alternatives():
 
         prompt = f"Suggest 2 to 3 healthy and commonly available alternatives for: {product_name}. Keep it short and return in bullet list format."
 
-        model = genai.GenerativeModel('gemini-pro')
+        model = genai.GenerativeModel(model_name="models/gemini-1.5-flash-latest")
         response = model.generate_content(prompt)
 
         return jsonify({
@@ -42,6 +42,7 @@ def get_alternatives():
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 # ----------------------------
 # ✅ Run the app
