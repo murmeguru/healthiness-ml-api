@@ -31,14 +31,13 @@ def get_alternatives():
     prompt = f"Suggest 2 or 3 healthier food or drink alternatives for: {product_name}. Respond in this format: 'Healthier alternatives: ...'"
 
     try:
-        response = openai.ChatCompletion.create(
+        response = openai.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
             max_tokens=100
         )
-
-        reply = response['choices'][0]['message']['content'].strip()
+        reply = response.choices[0].message.content.strip()
         return jsonify({"alternatives": reply})
 
     except Exception as e:
